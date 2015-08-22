@@ -127,7 +127,7 @@ public class AutoStacker {
 		double error;
 		double power;
 		
-		error =  m_encode - desired;
+		error =  desired - m_encode;
 		p = error;
 		i = i + error;
 		power = p * m_kP + i * m_kI;
