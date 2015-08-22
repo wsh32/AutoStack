@@ -67,12 +67,14 @@ public class AutoStacker {
 	public void run()	{
 		if(m_running && m_state!=-1)	{
 			double pow = 0;
+			double height = 0;
 			switch(m_state)	{
-			//Case 0: Move to 1 TH (10 in)
+			//Case 0: Move to 2 TH (24 in)
 			case 0:
-				pow = piLoop(10);
+				height = 24;
+				pow = piLoop(height);
 				m_motor.set(pow);
-				if(Math.abs(m_encode-10)<.2)	{
+				if(Math.abs(m_encode-height)<.2)	{
 					reset();
 					m_state = 1;
 				}
@@ -83,11 +85,12 @@ public class AutoStacker {
 				m_rightSol.set(DoubleSolenoid.Value.kForward);
 				m_state = 2;
 				
-			//Case 2: drop to 0TH (0 in)
+			//Case 2: drop to 1.5TH (18 in)
 			case 2:
-				pow = piLoop(0);
+				height = 18;
+				pow = piLoop(height);
 				m_motor.set(pow);
-				if(Math.abs(m_encode)<.2)	{
+				if(Math.abs(m_encode-height)<.2)	{
 					reset();
 					m_state = 3;
 				}
@@ -98,11 +101,12 @@ public class AutoStacker {
 				m_rightSol.set(DoubleSolenoid.Value.kReverse);
 				m_state = 5;
 			
-			//Case 5: raise to 2.5 th (15 in)
+			//Case 5: raise to 2.5 th (30 in)
 			case 5:
-				pow = piLoop(15);
+				height = 30;
+				pow = piLoop(height);
 				m_motor.set(pow);
-				if(Math.abs(m_encode-15)<.2)	{
+				if(Math.abs(m_encode-height)<.2)	{
 					reset();
 					m_running = false;
 					m_state = -1;
