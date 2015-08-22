@@ -85,7 +85,7 @@ public class AutoStacker {
 				
 			//Case 2: drop to 0TH (0 in)
 			case 2:
-				pow = piLoop(10);
+				pow = piLoop(0);
 				m_motor.set(pow);
 				if(Math.abs(m_encode)<.2)	{
 					reset();
@@ -100,7 +100,7 @@ public class AutoStacker {
 			
 			//Case 5: raise to 2.5 th (15 in)
 			case 5:
-				pow = piLoop(10);
+				pow = piLoop(15);
 				m_motor.set(pow);
 				if(Math.abs(m_encode-15)<.2)	{
 					reset();
